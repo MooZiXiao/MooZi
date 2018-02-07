@@ -1,0 +1,165 @@
+<!DOCPYTE>
+<html>
+<head>
+<title>温暖-(电视剧《恋爱先生》主题曲)</title>
+<style type="text/css">
+*{
+	margin:0px;
+}
+body{
+	background:url(images/1.jpg);/*背景图*/
+}
+#Con{
+	width:1000px;
+	height:600px;
+	margin:50px auto 0px;
+}
+#Con .ConL{
+	width:750px;
+	height:600px;
+	float:left;
+}
+#Con .ConR{
+    width:250px;
+	height:600px;
+	float:right;
+	background:rgba(0,0,0,0.5);	
+}
+/* 音乐标题样式 */
+#Con .ConR dl{
+	width:136px;
+	height:180px;
+	margin:50px auto 20px;
+	border-bottom:1px solid #fff;
+}
+#Con .ConR dl dt{
+	width:136px;
+	height:136px;
+}
+#Con .ConR dl dd{
+	width:136px;
+	height:45px;
+	color:#fff;
+	font-size:14px;
+	text-align:center;
+	line-height:45px;
+}
+
+/* 歌词样式 */
+#Con .ConR .Txt{
+	width:250px;
+	height:340px;
+	overflow-y:scroll;
+}
+#Con .ConR .Txt p{
+	color:#ddd;
+	font-size:12px;
+	line-height:30px;
+	text-align:center;
+}
+#Con .ConR .Txt::-webkit-scrollbar{
+	width:5px;
+	background:#ddd;
+}
+#Con .ConR .Txt::-webkit-scrollbar-thumb{
+	background:#666;
+}
+#gc{
+	display:none;
+}
+</style>
+</head>
+
+<body>
+<div id="Con">
+  <!-- 左边开始 -->
+  <div class="ConL">
+    <img src="images/0.jpg" width="750" height="600" />
+  </div>
+  <!-- 左边结束 -->
+  <!-- 右边开始 -->
+  <div class="ConR">
+    <dl>
+      <dt>
+        <img src="images/2.jpg" width="136" height="140" />
+      </dt>
+      <dd>
+         温暖-靳东
+      </dd>
+    </dl>
+    <!-- 播放的歌词开始 -->
+    <div class="Txt">
+      
+    </div>
+    <!-- 歌词结束 -->
+  </div>
+  <!-- 右边结束 -->
+</div>
+
+<div id="gc">
+  [00:00.42]成都 - 崔一乔
+  [00:19.10]让我掉下眼泪的 不止昨夜的酒
+  [00:26.72]让我依依不舍的 不止你的温柔
+  [00:34.35]余路还要走多久 你攥着我的手
+  [00:42.10]让我感到为难的 是挣扎的自由
+  [00:51.78]分别总是在九月 回忆是思念的愁
+  [00:59.59]深秋嫩绿的垂柳 亲吻着我额头
+  [01:07.33]在那座阴雨的小城里 我从未忘记你
+  [01:15.02]成都 带不走的 只有你
+  [01:22.80]和我在成都的街头走一走
+  [01:30.55]直到所有的灯都熄灭了也不停留
+  [01:38.09]你会挽着我的衣袖 我会把手揣进裤兜
+  [01:45.96]走到玉林路的尽头 坐在小酒馆的门口
+  [02:28.54]分别总是在九月 回忆是思念的愁
+  [02:36.30]深秋嫩绿的垂柳 亲吻着我额头
+  [02:43.96]在那座阴雨的小城里 我从未忘记你
+  [02:51.68]成都 带不走的 只有你
+  [02:59.52]和我在成都的街头走一走
+  [03:07.27]直到所有的灯都熄灭了也不停留
+  [03:14.81]你会挽着我的衣袖 我会把手揣进裤兜
+  [03:22.63]走到玉林路的尽头 坐在小酒馆的门口
+  [03:34.27]和我在成都的街头走一走
+  [03:42.09]直到所有的灯都熄灭了也不停留
+  [03:49.76]和我在成都的街头走一走
+  [03:57.48]直到所有的灯都熄灭了也不停留
+  [04:05.22]你会挽着我的衣袖 我会把手揣进裤兜
+  [04:12.85]走到玉林路的尽头 坐在(走过)小酒馆的门口
+</div>
+
+<audio src="崔一乔-成都.mp3"controls="controls" id="myMusic" style="width:100%;"></audio>
+<script type="text/javascript" src="js/jquery-3.2.1.min.js" ></script>
+<script type="text/javascript">
+  var txt=$("#gc").text();
+  var txtArr=txt.split("[");
+  var html="";
+  //alert(txtArr);
+  for(var i=1;i<txtArr.length;i++){
+	  //console.log("=="+txtArr[i]);
+	  var timeAndgc=txtArr[i].split("]");
+	  var gc=timeAndgc[1];
+	  var time=timeAndgc[0];
+	  
+	  //毫秒
+	  var s=time.split('.'); //以点分隔出毫秒
+	  var ms=s[1];
+	  var f=s[0].split(":"); //分钟+秒 : 分隔
+	  var _ms=f[0]*60+f[1]*1; //秒数
+	      html=html+"<p id="+_ms+">"+gc+"</p>"
+  }
+  
+  if(html){
+    $(".Txt").html(html);
+  }
+  $("#myMusic").get(0).play();
+  $("#myMusic").get(0).addEventListener("timeupdate",function(){
+	  var timer=this.currentTime; //获取当前播放时间
+	  //取秒数
+	  var s=parseInt(timer);
+	  document.title=s;
+	  for(var i=0;i<s;i++){
+		$("#"+i).css("color","red");  
+	  }
+ });
+</script>
+</body>
+</html>
